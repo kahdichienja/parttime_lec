@@ -1,0 +1,568 @@
+{% extends "sysbase.html" %}
+{% load static %}
+{% block content %}
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-default scrolling-navbar">
+    <div class="container-fluid">
+
+        <!-- Brand -->
+        <a class="navbar-brand text-success" href="" target="_blank">
+            <strong>Bushfire | Notifier</strong>
+        </a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Left -->
+            <ul class="navbar-nav mr-auto">
+
+            </ul>
+
+            <!-- Right -->
+
+            <ul class="navbar-nav nav-flex-icons">
+
+                {% if user.is_authenticated %}
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="#Home">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="{% url 'weather' %}">
+                        Daily weather Updates.
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="#services">
+                        Cover Area.
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="#info">
+                        Services
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{user.email}} <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a href="{% url 'dashboard' %}" class="dropdown-item">
+                            <img src="{% static 'home/img/default-user-avatar.png' %}" class="m-2" alt=""
+                                style="height: 1.5rem; border: 1px dotted rgb(155, 151, 151); border-radius: 50%;">
+                            Account.
+                        </a>
+                        <a class="dropdown-item text-danger" href="{% url 'logout' %}">
+                            Logout
+                        </a>
+                    </div>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="#Home">
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="{% url 'weather' %}">
+                        Daily weather Updates.
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="#services">
+                        Cover Area.
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="#info">
+                        Services
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-info" href="{% url 'registration' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->
+
+<!-- Full Page Intro -->
+<div class="view full-page-intro"
+    style="background-image: url({% static 'home/img/welcome/homescreen.jpg' %}); background-repeat: no-repeat; background-size: cover;"
+    id="Home">
+
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+        <!-- Content -->
+        <div class="container">
+
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+
+                <!--Grid column-->
+                <div class="col-md-6 mb-4 white-text text-center text-md-left">
+
+                    <h1 class="display-4 font-weight-bold">Welcome To Bushfire | Notifier</h1>
+
+                    <hr class="hr-light">
+
+                    <p>
+                        <strong>Your Plans For Bush Fire Starts Here</strong>
+                    </p>
+
+                    <p class="mb-4 d-none d-md-block">
+                        <strong>The most loved by over 500 000 users.</strong>
+                    </p>
+
+                    <a target="_blank" href="{% url 'login' %}" class="btn btn-indigo btn-sm btn-rounded">
+                        Get Started.
+                    </a>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6 col-xl-5 mb-4">
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+        </div>
+        <!-- Content -->
+
+    </div>
+    <!-- Mask & flexbox options-->
+
+</div>
+<!-- Full Page Intro -->
+
+<!--Main layout-->
+<main>
+    <div class="">
+        <!--Grid row-->
+        <div class="row mb-5 pb-4">
+            <!--Grid column-->
+            <div class="col-md-12 text-center">
+                <!-- Main heading -->
+                <h3 class="h1 font-weight-bold light-blue-text my-1 py-4">Bushfire Notifier For Everyone</h3>
+                <p class="container mb-4">
+                    The Current Bush fire update in.
+                </p>
+                <h5>State: {{notifications.city.state}}</h5>
+                <h5>City: {{notifications.city.name}}</h5>
+                <h5>Time: {{notifications.timestamp|timesince}} ago</h5>
+
+
+
+
+                <!-- CTA -->
+                <a target="_blank" href="{% url 'dashboard' %}" class="btn btn-info btn-rounded btn-md">
+                    View More...
+                    <i class="fas fa-folder-open ml-1"></i>
+                </a>
+                <a target="_blank" href="{% url 'login' %}" class="btn btn-success btn-rounded btn-md">Check Updates
+                    <i class="far fa-image ml-1"></i>
+                </a>
+            </div>
+            <!--Grid column-->
+        </div>
+        <div class="view jarallax">
+            <!-- <img class="jarallax-img" src="" alt=""> -->
+            <!--Carousel Wrapper-->
+            <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+                <!--Indicators-->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="2"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="3"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="4"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="5"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="6"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="7"></li>
+                    <li data-target="#carousel-example-2" data-slide-to="8"></li>
+                </ol>
+                <!--/.Indicators-->
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/AdelaideAustralia.jpeg' %}"
+                                alt="First slide">
+                            <div class="mask rgba-black-light"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">Adelaide, Australia</h3>
+                            <a href="https://aqicn.org/map/australia/">View More...</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/AlphingtonMelbourne.jpeg' %}"
+                                alt="First slide">
+                            <div class="mask rgba-black-light"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">Alphington Melbourne</h3>
+                            <a href="https://aqicn.org/map/australia/">View More...</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <!--Mask color-->
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/FloreyCanberra.jpeg' %}"
+                                alt="Second slide">
+                            <div class="mask rgba-black-strong"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">Florey Canberra</h3>
+                            <a href="https://aqicn.org/map/australia/">View More...</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <!--Mask color-->
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/GlenorchyHobart.jpeg' %}"
+                                alt="Second slide">
+                            <div class="mask rgba-black-strong"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">Glenorchy Hobart</h3>
+                            <a href="https://aqicn.org/map/australia/">View More...</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <!--Mask color-->
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/brisbaneQueensland.jpeg' %}"
+                                alt="Second slide">
+                            <div class="mask rgba-black-strong"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">brisbane Queensland</h3>
+                            <a href="https://aqicn.org/map/australia/">View More...</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <!--Mask color-->
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/Winnellie.jpeg' %}"
+                                alt="Second slide">
+                            <div class="mask rgba-black-strong"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">Winnellie, Australia</h3>
+                            <a href="https://aqicn.org/map/australia/">View More...</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <!--Mask color-->
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/SydneyAustralia.jpeg' %}"
+                                alt="Second slide">
+                            <div class="mask rgba-black-strong"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">Sydney, Australia</h3>
+                            <a href="https://aqicn.org/map/australia/">View More...</a>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <!--Mask color-->
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/victoria.jpeg' %}"
+                                alt="Third slide">
+                            <div class="mask rgba-black-slight"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">victoria, Australia</h3>
+                            <p>Third text</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <!--Mask color-->
+                        <div class="view">
+                            <img class="d-block w-100" style="height: 70vh;" src="{% static 'home/img/welcome/DuncraigPerth.jpeg' %}"
+                                alt="Third slide">
+                            <div class="mask rgba-black-slight"></div>
+                        </div>
+                        <div class="carousel-caption">
+                            <h3 class="h3-responsive">Duncraig Perth</h3>
+                            <p>Third text</p>
+                        </div>
+                    </div>
+                </div>
+                <!--/.Slides-->
+                <!--Controls-->
+                <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                <!--/.Controls-->
+            </div>
+            <!--/.Carousel Wrapper-->
+        </div>
+        <!--Grid row-->
+    </div>
+    <div class="" id="services">
+        <!--Grid row-->
+        <div class="row mb-5 pb-4">
+            <!--Grid column-->
+            <div class="col-md-12">
+                <!-- Main heading -->
+                <h3 class="h1 font-weight-bold light-blue-text text-center my-1 py-4">
+                    Notification Services.
+                </h3>
+                <p class="text-center mb-4 py-5 h4">
+                    The following are the services that our platform delivers to state cities.
+                </p>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 px-4 ">
+                        <!--First row-->
+                        {% for noti in noti_qs %}
+
+                        <div class="row ml-4">
+                            <a href="{% url 'login' %}">
+                                <div class="col-2 mr-3">
+                                    <img src="{{noti.flag_url}}" alt="" class="mb-1" style="height: 1.5rem;">
+                                </div>
+                            </a>
+                            <div class="col-10">
+                                <a href="{% url 'registration' %}" class="nav-link">
+
+                                    <h5 class="feature-title">{{noti.name}}</h5>
+                                </a>
+                                <p class="grey-text">
+
+                                </p>
+                            </div>
+
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 px-4 container">
+                        <h2>States/City Covered.</h2>
+                        <div class="row mt-4">
+                            {% for noti in noti_qs %}
+
+                            <div class="col-lg-3 col-md-12 col-sm-12">
+                                <img src="{{noti.flag_url}}" alt="" class="mb-1" style="height: 3.5rem;">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Grid column-->
+        </div>
+        <div class="view jarallax">
+            <img class="jarallax-img" src="{% static 'home/img/welcome/para2.jpg' %}" alt="">
+        </div>
+        <!--Grid row-->
+    </div>
+    <div class="container" id="info">
+        <section>
+            <h2 class="my-5 h3 text-center">More services...</h2>
+            <!--First row-->
+            <div class="row features-small mb-5 mt-3 wow fadeIn">
+                <!--First column-->
+                <div class="col-md-4">
+                    <!--First row-->
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                        </div>
+                        <div class="col-10">
+                            <h6 class="feature-title">Voice Evacuation Notification</h6>
+                            <p class="grey-text">
+                                In the event of a bushfire, the response team will use speakers and amplifiers to notify
+                                the residence with an alarm tone followed by a voice instead of the horn or a bell
+                                traditionally employed. The notification will tell the residence of the course of
+                                action, such as either to vacate, stay on the lookout or move to a temporary location.
+                            </p>
+                            <div style="height:15px"></div>
+                        </div>
+                    </div>
+                    <!--/First row-->
+                    <!--Second row-->
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                        </div>
+                        <div class="col-10">
+                            <h6 class="feature-title">Audiovisual notification:</h6>
+                            <p class="grey-text">
+                                in the event of a fire outbreak, the team will notify the registered members at risk. A
+                                voice notification will be sent to the registered members at risk through WhatsApp,
+                                Facebook, and Instagram accounts. Notification will provide causes of action depending
+                                on the severity of the bushfire.
+                            </p>
+                            <div style="height:15px"></div>
+                        </div>
+                    </div>
+                    <!--/Second row-->
+                </div>
+                <!--/First column-->
+                <!--Second column-->
+                <div class="col-md-4 flex-center">
+                    <img src="{% static 'home/img/welcome/layered.jpg' %}" alt="MDB" class="z-depth-0 img-fluid">
+                </div>
+                <!--/Second column-->
+                <!--Third column-->
+                <div class="col-md-4 mt-2">
+                    <!--First row-->
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                        </div>
+                        <div class="col-10">
+                            <h6 class="feature-title">Mass notification:</h6>
+                            <p class="grey-text">
+                                This will occur if the entire residence in a given place registers for the services. The
+                                mass notification is a comprehensive solution that leverages cutting edge communications
+                                technology to make warnings to people when people are not only in danger but also keep
+                                them informed and provide guidance to safety.
+                            </p>
+                            <div style="height:15px"></div>
+                        </div>
+                    </div>
+                    <!--/First row-->
+
+                    <!--Second row-->
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="fas fa-check-circle fa-2x indigo-text"></i>
+                        </div>
+                        <div class="col-10">
+                            <h6 class="feature-title">Exit point</h6>
+                            <p class="grey-text">
+                                Speed evacuation is critical during an emergency. ONYX EXitPoint audible exit technology
+                                is used to reduce evacuation time, prevent injuries, and save lives. The gadget has an
+                                audible exit sign that assists the residents in pinpointing the nearest exit location
+                                and guide them to safety.
+                            </p>
+                            <div style="height:15px"></div>
+                        </div>
+                    </div>
+                    <!--/Second row-->
+                </div>
+                <!--/Third column-->
+
+            </div>
+            <!--/First row-->
+
+        </section>
+        <!--Section: Not enough-->
+        <hr class="mb-5">
+        <!--Section: More-->
+        <section>
+
+            <h2 class="my-5 h3 text-center">...and even more</h2>
+
+            <!--First row-->
+            <div class="row features-small mt-5 wow fadeIn">
+
+                <!--Grid column-->
+                <div class="col-xl-3 col-lg-6">
+                    <!--Grid row-->
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="fas fa-level-up-alt fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-10 mb-2">
+                            <h5 class="feature-title font-bold mb-1">Frequent updates</h5>
+                            <p class="grey-text mt-2">
+
+                            </p>
+                        </div>
+                    </div>
+                    <!--/Grid row-->
+                </div>
+                <!--/Grid column-->
+
+                <!--Grid column-->
+                <div class="col-xl-3 col-lg-6">
+                    <!--Grid row-->
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="fas fa-comments fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-10 mb-2">
+                            <h5 class="feature-title font-bold mb-1">Active community</h5>
+                            <p class="grey-text mt-2">
+
+                            </p>
+                        </div>
+                    </div>
+                    <!--/Grid row-->
+                </div>
+                <!--/Grid column-->
+                <!--Grid column-->
+                <div class="col-xl-3 col-lg-6">
+                    <!--Grid row-->
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="fas fa-cubes fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-10 mb-2">
+                            <h5 class="feature-title font-bold mb-1">Modularity</h5>
+                            <p class="grey-text mt-2">
+
+                            </p>
+                        </div>
+                    </div>
+                    <!--/Grid row-->
+                </div>
+                <!--/Grid column-->
+
+                <!--Grid column-->
+                <div class="col-xl-3 col-lg-6">
+                    <!--Grid row-->
+                    <div class="row">
+                        <div class="col-2">
+                            <i class="fas fa-question fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-10 mb-2">
+                            <h5 class="feature-title font-bold mb-1">Technical support</h5>
+                            <p class="grey-text mt-2">
+
+                            </p>
+                        </div>
+                    </div>
+                    <!--/Grid row-->
+                </div>
+                <!--/Grid column-->
+
+            </div>
+            <!--/First row-->
+        </section>
+        <!--Section: More-->
+    </div>
+</main>
+{% endblock %}

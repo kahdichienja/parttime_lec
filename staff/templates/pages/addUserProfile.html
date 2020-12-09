@@ -1,0 +1,95 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block content %}
+{% include "utils/navbar.html" %}
+<div class="row card">
+    <form action="{% url 'profile' %}" method="POST" class="col s12">
+        {% csrf_token %}
+        <h4>Add User Profile</h4>
+        <div class="row">
+            <div class="col s12">
+                <h6>1: Add User Level.</h6><br>
+                <hr>
+                <div class="row">
+                    <div class="input-field col s12 l4">
+                        <select name="user_level">
+                            <option value="" disabled selected>Select User Level</option>
+                            <option value="LEC">Lecturer</option>
+                            <option value="HOD">HOD</option>
+                            <option value="DEAN">Dean</option>
+                        </select>
+                        <label>Select User Level</label>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <select name="user_id">
+                            <option value="" disabled selected>Select The User.</option>
+                            {% for user in user_qs %}
+                            <option value="{{user.id}}">{{user.username}}: {{user.email}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Select The User.</label>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <select name="department_id">
+                            <option value="" disabled selected>Choose Department</option>
+                            {% for dept in dept_qs %}
+                            <option value="{{dept.id}}">{{dept.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Department Select</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <h6>2: User Details.</h6><br>
+                <hr>
+                <div class="row">
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">person_outline</i>
+                        {{form.lecturer_sirname}}
+                        <label for="id_lecturer_sirname">Sirname</label>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">person_outline</i>
+                        {{form.other_name}}
+                        <label for="id_other_name">Other Names</label>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">mail</i>
+                        {{form.email}}
+                        <label for="id_email">Email Address</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <h6>3: Details.</h6><br>
+                <hr>
+                <div class="row">
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">business</i>
+                        {{form.address}}
+                        <label for="id_address">Address</label>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">call</i>
+                        {{form.tel}}
+                        <label for="id_tel">Phone Number</label>
+                    </div>
+                    <div class="input-field col s12 l4">
+                        <i class="material-icons prefix">fingerprint</i>
+                        {{form.user_id_or_pe_nember}}
+                        <label for="id_user_id_or_pe_nember">User ID/P.F. Number </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row col s12 center">
+            <input type="submit" value="Submit" class="btn right" name="submit">
+        </div>
+    </form>
+</div>
+{% endblock %}

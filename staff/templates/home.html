@@ -1,0 +1,26 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+{% include "utils/navbar.html" %}
+
+<br/>
+
+{% if zipcode %}
+	{{ zipcode }}
+{% endif %}
+
+{% if api %}
+	{% if api == "Error..." %}
+		There was an error, please try again...
+		{% else %}
+        <div class="card {{ category_color }}" style="padding: 1rem;">
+            Air Quality
+  <h1 class="display-4">{{ api.0.Category.Name }}<br/><br/></h1>
+        <p class="lead">Current Location: <b>{{ api.0.ReportingArea }}</b></p>
+        <p class="lead">Air Quality: <b>{{ api.0.AQI }}</b> out of 500.</p>
+       <p class="lead">Description: <b>{{ category_description }}</b><br/><br/></p>
+  	{% endif %}
+
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+{% block content %}
+{% include "utils/navbar.html" %}
+
+<div class="row col s12">
+  
+  <ul class="collection">
+    Today's Weather in Australian Cities.
+    {% for weather in weather_data %}
+    <li class="collection-item avatar">
+      <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="" class="circle">
+      <span class="title">{{ weather.city }}</span>
+      <p>{{ weather.temperature }}° C <br>
+        {{ weather.description }}
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

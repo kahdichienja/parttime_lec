@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+    <title>Bushfire | Notifier</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="icon" href="{% static 'home/img/mdb-favicon.ico' %} type="image/x-icon">
+    <!-- Styles -->
+    <link href="{% static 'home/css/bootstraphome.css' %}" rel="stylesheet">
+
+    <!-- Material Design Bootstrap -->
+    <link href="{% static 'home/css/md.css' %}" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <style type="text/css">
+        html,
+        body,
+        header,
+        .view {
+            height: 100%;
+        }
+
+        @media (max-width: 740px) {
+
+            html,
+            body,
+            header,
+            .view {
+                height: 1000px;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+
+            html,
+            body,
+            header,
+            .view {
+                height: 650px;
+            }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #1C2331 !important;
+            }
+        }
+    </style>
+
+</head>
+
+<body style="overflow-x: hidden;">
+    {% block content %}
+
+    {% endblock %}
+
+    <!--Main layout-->
+    <!--Footer-->
+    <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+        <div class="footer-copyright py-3" id="">
+            &copy; 2020 Bushfire.
+
+        </div>
+        <!--/.Copyright-->
+    </footer>
+    <!--/.Footer-->
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="{% static 'home/js/jquery3.3.1.min.js' %}"></script>
+
+    <!-- Tooltips -->
+    <script type="text/javascript" src="{% static 'home/js/popa.js' %}"></script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="{% static 'home/js/boot.js' %}"></script>
+
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'home/js/md.js' %}"></script>
+    <script src="{% static 'home/js/axios.min.js' %}></script>
+    <script type="text/javascript" src="{% static 'home/jsview.js' %}"></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+
+        // Animations initialization
+        new WOW().init();
+        // SideNav Initialization
+        $(".button-collapse").sideNav();
+        $('.mdb-select').materialSelect();
+        // object-fit polyfill run
+        objectFitImages();
+
+        /* init Jarallax */
+        jarallax(document.querySelectorAll('.jarallax'));
+
+        jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+            keepImg: true,
+        });
+    </script>
+</body>
+
+</html>

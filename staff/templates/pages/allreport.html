@@ -1,0 +1,39 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+{% block content %}
+{% include "utils/navbar.html" %}
+<div class="row">
+    <div class="col s12 m8 l8">
+        <ul class="collection">
+            <h4>All Reports </h4>
+            <ul class="collapsible">
+                {% for member in reports %}
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons blue-text">person_outline</i>
+                        {{member.staffprofile.lecturer_sirname}} {{staffprofile.member.other_name}}
+                        <span class="badge"><i class="material-icons blue-text">remove_red_eye</i></span></div>
+                    <div class="collapsible-body">
+                        <h5 class="green-text">Unit: {{member.unit.name}} :{{member.unit.code}}</h5>
+                        <h5 class="green-text">Session: {{member.accademicsession}}</h5>
+                        
+                        <hr>
+                        <div class="">
+                            <span class="badge"><a href="{% url 'report' member.id %}"><i class="material-icons green-text">receipt</i></a></span>
+                        </div>
+                        {% if member.staffprofile.user.is_active == True  %}
+                        <p><i class="material-icons green-text">filter_vintage</i>Active: {{dep.is_active}}</p>
+                        {% else %}
+                        <p><i class="material-icons red-text">block</i>Active: {{dep.is_active}}</p>
+                        {% endif %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1 @@
+web: gunicorn parttlec.wsgi --log-file -

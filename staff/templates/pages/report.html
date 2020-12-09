@@ -1,0 +1,226 @@
+{% extends 'report.html' %}
+{% load static %}
+{% block content %}
+<!-- start page container -->
+<div class="page-container container">
+    <!-- start sidebar menu -->
+    <!-- end sidebar menu -->
+    <!-- start page content -->
+
+    <div class="page-content-wrapper">
+        <div class="page-content container mt-5">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="white-box">
+                        <h3><b> </b> <span class="pull-right"></span></h3>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12 mb-2 p-4">
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4 text">
+                                        <p class="text-center">
+                                            <img src="{% static 'img/rongo.jpeg' %}" style="width: 15rem;" alt="logo"
+                                                class="logo-default" />
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8 text">
+                                        <p class="text-center text-muted">
+                                            OFFICE OF THE DEPUTY VICE CHANCELLOR <br>(ADMINISTRATION, FINANCE AND
+                                            PLANNING)
+                                        </p>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="pull-left col-md-4">
+                                        <address>
+                                            <p class="text-muted m-l-5">Tell: 0770308254 </p>
+                                            <p class="text-muted m-l-5">Cell: 0718546767</p>
+                                            <p class="text-muted m-l-5">Web: www.rongovarsity.ac.ke.</p>
+                                        </address>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="profile-userpic">
+
+                                        </div>
+                                    </div>
+                                    <div class="pull-right text-right col-md-4">
+                                        <address>
+                                            <p class="addr-font-h2">P.O. Box 103- 40404</p>
+                                            <p class="font-bold addr-font-h2">RONGO, KENYA </p>
+                                            <p class="text-muted m-l-30">dvc-afp@rongovarsity.ac.ke
+                                            </p>
+                                        </address>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="pull-left col-md-4">
+                                        <address>
+
+                                            <p class="text m-l-5">RU/DVCAFP/APPS/{{rand}} </p>
+                                            <p class="text m-l-5">
+                                                <script type="text/javascript">
+                                                    var d = new Date()
+                                                    document.write(d.getDate())
+                                                    document.write(".")
+                                                    document.write(d.getMonth() + 1)
+                                                    document.write(".")
+                                                    document.write(d.getFullYear())
+                                                </script>
+                                            </p>
+
+                                            <p class="text m-l-5">Mr/Ms. {{report.staffprofile}}</p>
+                                            <p class="text m-l-5">C/o {{report.staffprofile.department}}
+                                            </p>
+                                            <p class="text m-l-5"> Rongo University </p>
+                                            <p class="text m-l-5">P. O. Box 103 - 40404</p>
+                                            <p class="text m-l-5">RONGO</p>
+
+                                            <p class="text m-l-5">Dear Mr/Ms {{report.staffprofile}}</p>
+                                            <p class="text m-l-5">Tell: 0770308254 </p>
+                                        </address>
+                                    </div>
+                                    <div class="col-md-4">
+
+                                    </div>
+                                    <div class="pull-right text-right col-md-4">
+                                        <address>
+                                        </address>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+
+                                    <p style="text-align: center; padding: 2rem;"><b>RE: LETTER OF EXTERNAL PART-TIME
+                                            CONTRACT APPOINTMENT FOR
+                                            UNDERGRADUATE TEACHING
+                                        </b>
+                                    </p>
+                                    <p>I am authorized to offer you appointment on contract as a Part-time Lecturer
+                                        in the Department of {{report.staffprofile.department}},in the service of Rongo
+                                        University to teach the following course(s)
+                                        during the <b>{{report.accademicsession.accademic_year}} Academic year
+                                            ({{report.accademicsession.session}}
+                                            {{report.accademicsession.semester}}):</b>
+                                    </p>
+                                    <h3>&nbsp;&nbsp; {{report.unit.code}}: {{report.unit.name}}</h3>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row p-4">
+                                    <p class="text m-l-4">You are required to report to the Head of Department for
+                                        deployment and
+                                        assignment
+                                        of your teaching duties.
+                                    </p>
+
+                                    <p>The terms of this appointment will include:</p>
+                                    <p>
+                                        (i) The class size of the course attaining the recommended quorum. <br>
+                                        (ii) Covering the courses for which you have been appointed to the required
+                                        standards. <br>
+                                        (iii) Giving out at least two (2) continuous assessment tests (CATs). <br>
+                                        (iv) Setting, invigilating and marking the examinations. <br>
+                                        (v) Submission of examination marks and scripts within the stipulated timeframe
+                                        to the Head of Department. <br>
+                                    </p>
+                                    <p>If you accept this appointment on the terms of this letter, please sign in the
+                                        space provided below and return one signed copy of the letter to the
+                                        undersigned.
+
+                                    </p>
+                                    <p> Yours Sincerely,</p>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row p-5">
+                                    NAME
+                                    ……………………………………………………………………………………………………………………………………………………………………………………………………………………
+                                    <br>
+
+                                    SIGNATURE …………………………………………………………………………………………DATE
+                                    ……………………..……………….………………………………………………… <br>
+
+                                    ID. No. ………………………………………..…………………………………………………KRA PIN
+                                    No…………………………….....……………………………………… <br>
+
+                                    ACCOUNT
+                                    No…………………………………………………………………………………………BANK………………………..BRANCH………….……..……………………………
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="pull-left col-md-4">
+                                        <address>
+
+                                            <p class="text m-l-5">RU/DVCAFP/APPS/{{rand}} </p>
+                                            <p class="text m-l-5"> cc. Vice Chancellor</p>
+                                            <p class="text m-l-5"> Deputy Vice Chancellor (ASA) </p>
+                                            <p class="text m-l-5"> Finance Officer </p>
+
+                                            <p class="text m-l-5"> Head, Department of
+                                                {{report.staffprofile.department}}</p>
+                                            <p class="text m-l-5"> Assistant Registrar, Human Resource</p>
+                                            <p class="text m-l-5"> Director, Quality Assurance</p>
+                                            <p class="text m-l-5"> SMS/bw</p>
+
+
+                                        </address>
+                                    </div>
+                                    <div class="col-md-4">
+
+                                    </div>
+                                    <div class="pull-right text-right col-md-4">
+                                        <address>
+                                        </address>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-12 mt-3">
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                        <p class="text-center"></p>
+                                        <hr>
+                                        <p></p>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <hr>
+                                <div class="text-right">
+                                    <button onclick="javascript:window.print();" class="btn btn-default btn-outline"
+                                        type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page content -->
+    <!-- start chat sidebar -->
+    <!-- end chat sidebar -->
+</div>
+<!-- end page container -->
+{% endblock %}

@@ -1,0 +1,169 @@
+{% load static %}
+<div class="navbar-fixed">
+    <nav class="white lighten-5 hoverable navbar-fixed">
+        <div class="nav-wrapper">
+            <a href="#!" style="margin-left: 25px;" id="myToggler" class="left brand-logo grey-text lighten-2">
+                Part Time | Lecturers
+            </a>
+            <ul class="right">
+                <li><a href="{% url 'dashboard' %}" class="hide-on-small-only"><i
+                            class="material-icons grey-text lighten-2">apps</i></a></li>
+                <li><a href="{% url 'profile' %}" class="hide-on-small-only" title="add User Profile"><i
+                            class="material-icons grey-text lighten-2">person_add</i></a></li>
+                <li><a href="{% url 'all' %}" class="hide-on-small-only" title="Staffs"><i
+                            class="material-icons grey-text lighten-2">assignment</i></a></li>
+                <li><a class="hide-on-small-only waves-effect waves-light modal-trigger" href="#modal1" title="Add Unit"><i
+                            class="material-icons  grey-text lighten-2">mode_edit</i></a></li>
+                <li><a class="hide-on-small-only waves-effect waves-light modal-trigger" href="#modal2" title="Add Sessions"><i
+                            class="material-icons  grey-text lighten-2">event_available</i></a></li>
+                <li><a class="hide-on-small-only waves-effect waves-light modal-trigger" href="#modal3" title="Allocate Unit"><i
+                            class="material-icons  grey-text lighten-2">person_pin</i></a></li>
+                <li><a class="hide-on-small-only" href="{% url 'allReport' %}" title="All Reports"><i
+                            class="material-icons  green-text lighten-2">report</i></a></li>
+                <li><a href="{% url 'logout' %}" class="hide-on-small-only"><i
+                            class="material-icons grey-text lighten-2">visibility_off</i></a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="{% static 'dashboard/img/bg.jpeg' %}">
+                </div>
+                <a href="#user"><img class="circle" src="{% static 'dashboard/img/user.jpeg' %}"></a>
+                <a href="#name"><span class="white-text name">{{user.username}}</span></a>
+                <a href="#email"><span class="white-text email">{{user.email}}</span></a>
+            </div>
+        </li>
+        <li><a class="" href="{% url 'dashboard' %}"><i class="material-icons">apps</i> Dashboard</a></li>
+        <li><a class="" href="{% url 'profile' %}"><i class="material-icons">person_add</i> Add User Profile</a></li>
+        <li><a class="" href="{% url 'all' %}"><i class="material-icons">group</i>All Staffs Members</a></li>
+        <li><a class="waves-effect waves-light modal-trigger" href="#modal1"><i class="material-icons">mode_edit</i>Add
+                Unit / Course</a></li>
+        <li><a class="waves-effect waves-light modal-trigger" href="#modal2"><i class="material-icons">event_available</i>Add Sessions</a></li>
+        <li><a class="waves-effect waves-light modal-trigger" href="#modal3"><i class="material-icons">person_pin</i>Allocate Course/Unit</a></li>
+        <li><a class="" href="{% url 'allReport' %}"><i class="material-icons green-text">report</i>All Reports</a></li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li><a href="{% url 'logout' %}"><i class="material-icons text-red">visibility_off</i> logout</a></li>
+
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger mt-3 white-text"><i class="material-icons">menu</i></a>
+
+
+
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4>Add Unit</h4>
+            <div class="container">
+                <form action="{% url 'addUnit' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s12 l6">
+                            <i class="material-icons prefix">assignment</i>
+                            {{unitform.name}}
+                            <label for="id_lecturer_sirname">Name</label>
+                        </div>
+                        <div class="input-field col s12 l6">
+                            <i class="material-icons prefix">short_text</i>
+                            {{unitform.code}}
+                            <label for="id_other_name">Code</label>
+                        </div>
+                    </div>
+                    <div class="row col s12 center">
+                        <input type="submit" value="Submit" class="btn right" name="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-green btn btn-flat">Close</button>
+        </div>
+    </div>
+
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4>Add Sessions</h4>
+            <!-- sform -->
+            <div class="">
+                <form action="{% url 'addSession' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s12 l4">
+                            <i class="material-icons prefix">assignment</i>
+                            {{sform.semester}}
+                            <label for="id_lecturer_sirname">Semester</label>
+                        </div>
+                        <div class="input-field col s12 l4">
+                            <i class="material-icons prefix">short_text</i>
+                            {{sform.accademic_year}}
+                            <label for="id_other_name">Accademic Year</label>
+                        </div>
+                        <div class="input-field col s12 l4">
+                            <i class="material-icons prefix">date_range</i>
+                            {{sform.session}}
+                            <label for="id_other_name">Session</label>
+                        </div>
+                    </div>
+                    <div class="row col s12 center">
+                        <input type="submit" value="Submit" class="btn right" name="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-green btn btn-flat">Close</button>
+        </div>
+    </div>
+    <div id="modal3" class="modal">
+        <div class="modal-content">
+            <h4>Allocate Course /Unit Sessions</h4>
+            <!-- sform -->
+            <div class="">
+                <form action="{% url 'allocateWithReport' %}" method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="input-field col s12 l4">
+                            <select name="staffprofile_id">
+                                <option value="" disabled selected>Select Lecturer User.</option>
+                                {% for staff in profiles %}
+                                <option value="{{staff.id}}">{{staff.lecturer_sirname}} {{staff.other_name}}</option>
+                                {% endfor %}
+                            </select>
+                            <label>Select Lecturer.</label>
+                        </div>
+                        <div class="input-field col s12 l4">
+                            <select name="unit_id">
+                                <option value="" disabled selected>Select Unit.</option>
+                                {% for unit in units %}
+                                <option value="{{unit.id}}">{{unit.name}}: {{unit.code}}</option>
+                                {% endfor %}
+                            </select>
+                            <label>Select Unit.</label>
+                        </div>
+                        <div class="input-field col s12 l4">
+                            <select name="accademicsession_id">
+                                <option value="" disabled selected>Select Accademic Session.</option>
+                                {% for session in accademicsession %}
+                                <option value="{{session.id}}">{{session}}</option>
+                                {% endfor %}
+                            </select>
+                            <label>Select Accademic Session.</label>
+                        </div>
+                    </div>
+                    <div class="row col s12 center">
+                        <input type="submit" value="Submit" class="btn right" name="submit">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-close waves-effect waves-green btn btn-flat">Close</button>
+        </div>
+    </div>
